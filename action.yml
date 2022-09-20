@@ -1,0 +1,37 @@
+name: 'Twilio Action MMS SMS'
+author: 'https://github.com/adamclark64'
+description: 'Send an SMS or MMS from GitHub Actions using Twilio nodejs api'
+inputs:
+  from:
+    description: 'Phone number in your Twilio account to send the SMS from'
+    required: true
+  to:
+    description: 'Phone number(s) to send the SMS to'
+    required: true
+  body:
+    description: 'The body you want to send'
+    required: false
+  mediaUrl:
+    description: 'The mediaUrl you want to send'
+    required: false
+  TWILIO_ACCOUNT_SID:
+    description: 'A Twilio Account SID. Can alternatively be stored in environment'
+    required: true
+  TWILIO_AUTH_TOKEN:
+    description: 'A Twilio API Key. Can alternatively be stored in environment'
+    required: true
+  TWILIO_OPTS:
+    description: "Optional JSON string param to pass values in MessageListInstanceCreateOptions that are not already inputs: {mediaUrl, body, to, from}  ref: https://github.com/twilio/twilio-node/blob/main/lib/rest/api/v2010/account/message.d.ts#L193"
+    required: false
+  TWILIO_CLIENT_OPTS:
+    description: "Optional JSON string param to pass values in TwilioClientOptions on Twilio client creation ref: https://github.com/twilio/twilio-node/blob/main/lib/rest/Twilio.d.ts#L167"
+    required: false
+outputs:
+  messageSid:
+    description: 'The Twilio Message SID'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+branding:
+  color: 'red'
+  icon: 'message-circle'
