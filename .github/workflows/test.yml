@@ -1,0 +1,32 @@
+name: 'test-run'
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'releases/*'
+env:
+  MESSAGE: just a test
+  TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+  TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+  TO: ${{ secrets.TWILIO_TO }}
+
+jobs:
+  test: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          npm install
+          npm run build
+          npm run package
+      - uses: ./
+        name: basic
+        with:
+          body: ${{ secrets.TWILIO_TO }}
+          mediaUrl: https://m.media-amazon.com/images/M/MV5BMjA3MjQ4NTMyNF5BMl5BanBnXkFtZTcwMTM3NDk0NA@@._V1_.jpg
+          from: ${{secrets.TWILIO_FROM}}
+          to: just a test
+        env:
+          TWILIO_ACCOUNT_SID: $TWILIO_ACCOUNT_SID
+          TWILIO_AUTH_TOKEN: $TWILIO_AUTH_TOKEN
