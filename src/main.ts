@@ -17,7 +17,7 @@ const run = async () => {
     core.getInput('TWILIO_CLIENT_OPTS') || process.env.TWILIO_CLIENT_OPTS
 
   if (!body.length && !mediaUrl.length) {
-    const msg = 'Bad Request: message and media both cannot be undefined'
+    const msg = 'Bad Request: message and media cannot both be undefined'
     core.error(msg)
     core.setFailed(msg)
   }

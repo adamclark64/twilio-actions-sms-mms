@@ -9,7 +9,7 @@ env:
   BODY: just a test
   TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
   TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-  TO: ${{ secrets.TWILIO_TO }}
+  TO:
 
 jobs:
   test: # make sure the action works on a clean machine without building
@@ -26,10 +26,7 @@ jobs:
           body: $BODY
           mediaUrl: https://m.media-amazon.com/images/M/MV5BMjA3MjQ4NTMyNF5BMl5BanBnXkFtZTcwMTM3NDk0NA@@._V1_.jpg
           from: ${{secrets.TWILIO_FROM}}
-          to: $TO
-          # to: |
-          #   $TO
-          #   $TO
+          to: ${{ secrets.TWILIO_TO }}
         env:
-          TWILIO_ACCOUNT_SID: $TWILIO_ACCOUNT_SID
-          TWILIO_AUTH_TOKEN: $TWILIO_AUTH_TOKEN
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
