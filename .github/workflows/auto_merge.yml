@@ -1,0 +1,16 @@
+name: auto_merge
+
+on:
+  pull_request:
+
+jobs:
+  dependabot:
+    name: 'Merge Dependabot updates'
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
+    steps:
+      - name: merge dependabot pr
+        uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          target: minor
+          github-token: ${{ secrets.PUSH_ACCESS_PAT }}
