@@ -7,7 +7,7 @@ const run = async () => {
   // https://github.com/actions/toolkit/issues/184
   const sendTo = core.getMultilineInput('to')
   const body = core.getInput('body')
-  const mediaUrl = core.getInput('mediaUrl')
+  const mediaUrl = core.getMultilineInput('mediaUrl')
   const accountSid =
     core.getInput('TWILIO_ACCOUNT_SID') || process.env.TWILIO_ACCOUNT_SID
   const authToken =
