@@ -26,7 +26,7 @@
   "license": "MIT",
   "dependencies": {
       "@actions/core": "^1.6.0",
-      "twilio": "^4.8.0"
+      "twilio": "^4.10.0"
   },
   "devDependencies": {
       "@types/node": "^18.16.3",
